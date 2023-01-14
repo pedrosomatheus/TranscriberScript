@@ -1,4 +1,3 @@
 # TranscriberScript
 
--Script made to crack any type of Captcha or ReCaptcha
-
+-Script created to assist in breaking Captchas
