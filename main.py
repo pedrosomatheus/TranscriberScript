@@ -9,20 +9,45 @@ from pathlib import Path
 from os import remove
 
 
+#Definindo variaveis
+CaminhoArquivoAudio = f"{Path.home()}\\Desktop\\Resposta Transcricao"
+
+
 # Removendo o TXT transcrito caso já exista
 try:
+
     # Caso ele nao exista, o erro retornado será ignorado
-    os.remove(f"{Path.home()}\\Desktop\\Resposta Transcricao\\transcricao.txt")
-    os.remove(f"{Path.home()}\\Desktop\\Resposta Transcricao\\audio.wav")
+    caminhosArquivo = [
+    os.path.join(CaminhoArquivoAudio, nome) 
+    for nome in os.listdir(CaminhoArquivoAudio)
+    ]
+
+    for arq in caminhosArquivo:
+        if arq.lower().endswith(".wav"):
+            os.remove(f"{Path.home()}\\Desktop\\Resposta Transcricao\\audio.wav")
+
+        if arq.lower().endswith(".txt"):  
+            os.remove(f"{Path.home()}\\Desktop\\Resposta Transcricao\\transcricao.txt")
+     
 
 except:
     pass
 
 
+
 # Convertendo arquivo mp3 para wav
 try:
 
-    src = (f"{Path.home()}\\Desktop\\Resposta Transcricao\\audio.mp3")
+    #Capturando arquivo MP3
+    caminhosArquivo = [
+    os.path.join(CaminhoArquivoAudio, nome) 
+    for nome in os.listdir(CaminhoArquivoAudio)
+    ]
+
+    for arq in caminhosArquivo:
+        if arq.lower().endswith(".mp3"):
+            src = arq
+
 
     sound = AudioSegment.from_mp3(src)
 
